@@ -24,13 +24,13 @@ type FormValues = {
 export default function Create() {
   const form = useForm({
     initialValues: {
-      rut: "20.722.986-5",
-      names: "Nicolas Ignacio",
-      lastNames: "Chaima Cisternas",
-      address: "Manantiales 6721",
-      city: "Santiago",
-      phone: "982683923",
-      email: "nikochaima72@gmail.com",
+      rut: "",
+      names: "",
+      lastNames: "",
+      address: "",
+      city: "",
+      phone: "",
+      email: "",
       birthday: new Date(),
       civilStatus: "soltero",
     },
@@ -108,8 +108,9 @@ export default function Create() {
       >
         <TextInput
           error={true}
-          label={"RUT"}
+          label={"RUT (Con puntos y guión)"}
           withAsterisk
+          placeholder="9.999.999-9"
           sx={() => ({ marginTop: "1rem" })}
           {...form.getInputProps("rut")}
         />
