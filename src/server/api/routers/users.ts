@@ -68,7 +68,7 @@ export const usersRouter = createTRPCRouter({
         city: z.string(),
         phone: z.string(),
         email: z.string(),
-        birthDate: z.date(),
+        birthday: z.date(),
         civilStatus: z.string(),
       })
     )
@@ -84,7 +84,7 @@ export const usersRouter = createTRPCRouter({
           city: input.city,
           phone: input.phone,
           email: input.email,
-          birthday: input.birthDate,
+          birthday: input.birthday,
           civilStatus: input.civilStatus,
         },
       });

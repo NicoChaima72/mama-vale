@@ -44,6 +44,7 @@ const Home: NextPage = () => {
               <th>Número</th>
               <th>Email</th>
               <th>Cumpleaños</th>
+              <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -60,6 +61,7 @@ const Home: NextPage = () => {
                 <td>
                   {moment(new Date(user.birthday as Date)).format("DD/MM/yyyy")}
                 </td>
+                <td>{user.civilStatus}</td>
                 <td>
                   <Link href={`/edit/${user.rut}`}>
                     <Button size="xs">Editar</Button>
