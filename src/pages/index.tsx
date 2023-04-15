@@ -24,7 +24,7 @@ const Home: NextPage = () => {
       >
         <Title>Usuarios</Title>
         <Link href={"/create"}>
-          <Button>Agregar</Button>
+          <Button color="green">Agregar</Button>
         </Link>
       </Box>
       {isUsersLoading ? (
