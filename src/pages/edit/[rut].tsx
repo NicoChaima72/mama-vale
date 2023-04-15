@@ -80,8 +80,8 @@ export default function Edit() {
   console.log({ router: router.query.rut });
 
   const handleSubmit = (values: FormValues) => {
-    console.log(values)
-  }
+    console.log(values);
+  };
 
   return (
     <>
@@ -91,106 +91,112 @@ export default function Edit() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Title>Agregar usuario</Title>
-      <form
-        style={{ marginTop: "1rem" }}
-        onSubmit={form.onSubmit((values) => handleSubmit(values))}
-      >
-        <TextInput
-          error={true}
-          label={"RUT"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("rut")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Nombres"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("names")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Apellidos"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("lastNames")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Dirección"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("address")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Ciudad"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("city")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Número"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("phone")}
-        />
-        <TextInput
-          error="Invalid email"
-          label={"Email"}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("email")}
-        />
-        <DateInput
-          // value={birthday}
-          // onChange={setBirthday}
-          label="Date input"
-          placeholder="Date input"
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          {...form.getInputProps("birthday")}
-        />
-        <Select
-          label="Estado civil"
-          // value={civilStatus}
-          // onChange={setCivilStatus}
-          {...form.getInputProps("civilStatus")}
-          withAsterisk
-          sx={() => ({ marginTop: "1rem" })}
-          data={[
-            {
-              value: "soltero",
-              label: "Soltero",
-            },
-            {
-              value: "casado",
-              label: "Casado",
-            },
-            {
-              value: "divorciado",
-              label: "Divorciado",
-            },
-            {
-              value: "viudo",
-              label: "Viudo",
-            },
-          ]}
-        />
-        <Box
-          sx={() => ({
-            display: "flex",
-            justifyContent: "end",
-            marginTop: "1rem",
-          })}
+      {isUserLoading ? (
+        <div>Cargando...</div>
+      ) : !user ? (
+        <div>No existe</div>
+      ) : (
+        <form
+          style={{ marginTop: "1rem" }}
+          onSubmit={form.onSubmit((values) => handleSubmit(values))}
         >
-          {/* <Button type="submit" disabled={isCreateUserLoading}>
+          <TextInput
+            error={true}
+            label={"RUT"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("rut")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Nombres"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("names")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Apellidos"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("lastNames")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Dirección"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("address")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Ciudad"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("city")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Número"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("phone")}
+          />
+          <TextInput
+            error="Invalid email"
+            label={"Email"}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("email")}
+          />
+          <DateInput
+            // value={birthday}
+            // onChange={setBirthday}
+            label="Date input"
+            placeholder="Date input"
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            {...form.getInputProps("birthday")}
+          />
+          <Select
+            label="Estado civil"
+            // value={civilStatus}
+            // onChange={setCivilStatus}
+            {...form.getInputProps("civilStatus")}
+            withAsterisk
+            sx={() => ({ marginTop: "1rem" })}
+            data={[
+              {
+                value: "soltero",
+                label: "Soltero",
+              },
+              {
+                value: "casado",
+                label: "Casado",
+              },
+              {
+                value: "divorciado",
+                label: "Divorciado",
+              },
+              {
+                value: "viudo",
+                label: "Viudo",
+              },
+            ]}
+          />
+          <Box
+            sx={() => ({
+              display: "flex",
+              justifyContent: "end",
+              marginTop: "1rem",
+            })}
+          >
+            {/* <Button type="submit" disabled={isCreateUserLoading}>
             {isCreateUserLoading ? "Guardando..." : "Guardar"}
           </Button> */}
-        </Box>
-      </form>
+          </Box>
+        </form>
+      )}
     </>
   );
 }
