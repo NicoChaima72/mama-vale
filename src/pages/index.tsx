@@ -1,9 +1,13 @@
-import { Box, Button, Container, Text, Title } from "@mantine/core";
+import { Box, Button, Container, Table, Text, Title } from "@mantine/core";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { api } from "~/utils/api";
+import moment from "moment";
 
 const Home: NextPage = () => {
+  const { data: users, isLoading: isUsersLoading } =
+    api.users.getAll.useQuery();
   return (
     <>
       <Head>
@@ -23,6 +27,49 @@ const Home: NextPage = () => {
           <Button>Agregar</Button>
         </Link>
       </Box>
+      {isUsersLoading ? (
+        <Text mt={"1rem"}>Cargando...</Text>
+      ) : (
+        <Table
+          striped
+          mt={"2rem"}
+        >
+          <thead>
+            <tr>
+              <th>RUT</th>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Dirección</th>
+              <th>Ciudad</th>
+              <th>Número</th>
+              <th>Email</th>
+              <th>Cumpleaños</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users?.map((user) => (
+              <tr key={user.rut}>
+                <td>{user.rut}</td>
+                <td>{user.names}</td>
+                <td>{user.lastNames}</td>
+                <td>{user.address}</td>
+                <td>{user.city}</td>
+                <td>{user.phone}</td>
+                <td>{user.email}</td>
+                <td>
+                  {moment(new Date(user.birthday as Date)).format("DD/MM/yyyy")}
+                </td>
+                <td>
+                  <Link href={`/edit/${user.rut}`}>
+                    <Button size="xs">Editar</Button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
     </>
   );
 };

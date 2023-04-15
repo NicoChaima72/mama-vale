@@ -1,6 +1,7 @@
 import { Box, Button, Select, TextInput, Title } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useForm } from "@mantine/form";
+import { notifications } from "@mantine/notifications";
 import type { inferRouterOutputs } from "@trpc/server";
 import Head from "next/head";
 import type { AppRouter } from "~/server/api/root";
@@ -79,6 +80,11 @@ export default function Create() {
       onSuccess: (data: routerOutput["users"]["create"]) => {
         if (data.ok) {
           form.reset();
+          notifications.show({
+            title: "Usuario registrado",
+            message: "Se ha registrado el usuario correctamente",
+            color: "green"
+          });
         } else {
           form.setFieldError("rut", data.message);
         }
